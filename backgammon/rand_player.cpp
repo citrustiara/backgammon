@@ -1,14 +1,17 @@
 #include "rand_player.h"
-#include <Windows.h>
 #include <cmath>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
+
+static std::random_device rd;
+static std::mt19937 gen(rd());
+static std::uniform_int_distribution<int> dist_d6(1, 6);
 
 void rand_player::makemove(board &b) {
-  int d1 = (rand() % 6) + 1;
-  int d2 = (rand() % 6) + 1;
+  int d1 = dist_d6(gen);
+  int d2 = dist_d6(gen);
 
   std::vector<int> dice = {d1, d2};
   if (d1 == d2) {
@@ -32,7 +35,8 @@ void rand_player::makemove(board &b) {
     if (all_moves.empty())
       break;
     //Sleep(1000);
-    Move selected = all_moves[rand() % all_moves.size()];
+    std::uniform_int_distribution<int> idx(0, (int)all_moves.size() - 1);
+    Move selected = all_moves[idx(gen)];
     std::cout << std::endl
               << "RandPlayer wykonuje ruch: "
               << (selected.from == -1 ? "BAR"

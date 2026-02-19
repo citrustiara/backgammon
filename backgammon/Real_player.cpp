@@ -2,13 +2,16 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <random>
 #include <vector>
 
+static std::random_device rd;
+static std::mt19937 gen(rd());
+std::uniform_int_distribution<int> dist(1, 6);
+
 void real_player::makemove(board& b) {
-	srand(1234);
-	int d1 = (rand() % 6) + 1;
-	srand(4321);
-	int d2 = (rand() % 6) + 1;
+	int d1 = dist(gen);
+	int d2 = dist(gen);
 
 	std::vector<int> dice = { d1, d2 };
 	if (d1 == d2) { // jezeli podwojne to 4 ruchy
