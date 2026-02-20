@@ -1,9 +1,7 @@
 #include "rand_player.h"
-#include <cmath>
 #include <iostream>
 #include <random>
 #include <vector>
-
 
 static std::random_device rd;
 static std::mt19937 gen(rd());

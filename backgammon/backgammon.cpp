@@ -21,8 +21,8 @@ int menu() {
 	std::cout <<"			| |_) / ___ \\ |___| . \\ |_| |/ ___ \\| |  | | |  | | |_| | |\\  |"<< std::endl;
 	std::cout <<"			|____/_/   \\_\\____|_|\\_\\____/_/   \\_\\_|  |_|_|  |_|\\___/|_| \\_|"<< std::endl;
 	std::cout << std::endl;
-	std::cout << "			                       press 1 to load from file" << std::endl;
-	std::cout << "			                       press 2 to start new game" << std::endl;
+	std::cout << "			                    press 1 to load from file" << std::endl;
+	std::cout << "			                    press 2 to start new game" << std::endl;
 	int choice = 0;
 	while (true) {
 		if (!(std::cin >> choice)) {
