@@ -4,6 +4,7 @@
 class player {
 protected:
   bool color;
+  std::vector<int> dice;
 
 public:
   player(bool c) : color(c) {}
@@ -11,6 +12,8 @@ public:
   virtual void makemove(board &b) = 0;
   bool getcolor() const { return color; }
   virtual std::vector<Move> getpossiblemoves(int dice1, board &b);
-  std::vector<Move> getallpossiblemoves(const std::vector<int> &availableDice,
-                                        board &b);
+  void rolldice();
+  std::vector<Move> getallpossiblemoves(board &b);
+  void consumeDie(Move selected);
+  bool areDiceEmpty() const;
 };

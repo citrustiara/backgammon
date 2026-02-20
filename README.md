@@ -132,8 +132,3 @@ Want to add something? The code is structured to make it easy:
 - **Change game rules**: Modify `board::canLand()` or `board::executeMove()`
 - **Improve the UI**: Update `board::draw()`
 
----
-
-**Status**: Active development  
-**Last Updated**: 2024  
-**Original Project**: 2023 (non-OOP version)

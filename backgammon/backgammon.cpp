@@ -44,8 +44,8 @@ int menu() {
 int main() {
 	
 	board b;
-	real_player gracz1(0); // Black
-	//rand_player gracz1(0); // White
+	//real_player gracz1(0); // Black
+	rand_player gracz1(0); // White
 	rand_player gracz2(1); // White
 	int choice = menu();
 	if (choice == 2) {

@@ -27,7 +27,7 @@ void AI_player::makemove(board& b) {
         if (available.empty())
             break;
 
-        std::vector<Move> all_moves = getallpossiblemoves(available, b);
+        std::vector<Move> all_moves = getallpossiblemoves(b);
 
         if (all_moves.empty())
             break;

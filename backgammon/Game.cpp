@@ -11,10 +11,11 @@ void Game::simulate() {
 		std::cout << "\n--- TURA GRACZA 1 (B - Black) ---\n";
 		p1.makemove(b);
 		gameoverflag = b.isGameOver();
-
+		if (gameoverflag > 0) break;
 		std::cout << "\n--- TURA GRACZA 2 (W - White) ---\n";
 		p2.makemove(b);
 		gameoverflag = b.isGameOver();
+		if (gameoverflag > 0) break;
 
 	}
 	if (gameoverflag == 1) {

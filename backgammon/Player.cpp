@@ -1,7 +1,13 @@
 #include "Player.h"
 #include <array>
+#include <cstdlib>
+#include <random>
 #include <vector>
 
+
+static std::random_device rd;
+static std::mt19937 gen(rd());
+std::uniform_int_distribution<int> dist(1, 6);
 
 std::vector<Move> player::getpossiblemoves(int dice1, board& b) {
 	std::vector<Move> moves;
@@ -33,20 +39,56 @@ std::vector<Move> player::getpossiblemoves(int dice1, board& b) {
 }
 
 std::vector<Move>
-player::getallpossiblemoves(const std::vector<int>& availableDice, board& b) {
+player::getallpossiblemoves(board& b) {
 	std::vector<Move> all_moves;
-
+	const std::vector<int>& availableDice = dice; //reference nie zajmuje dodatkowej pamieci, niech tak zostanie po starej wersji juz
 	// czy kostki sa takie same
 	bool all_same = true;
-	if (availableDice.size() >= 2 && availableDice[0] == availableDice[1]) {
+	if (availableDice.size() >= 2 && availableDice[0] == availableDice[1] && availableDice[1]!=0) {
 		all_moves = getpossiblemoves(availableDice[0], b);
 	}
 
 	else {
 		for (int d : availableDice) {
-			std::vector<Move> m = getpossiblemoves(d, b);
-			all_moves.insert(all_moves.end(), m.begin(), m.end());
+			if (d != 0) {
+				std::vector<Move> m = getpossiblemoves(d, b);
+				all_moves.insert(all_moves.end(), m.begin(), m.end());
+			}
 		}
 	}
 	return all_moves;
+}
+
+void player::rolldice() {
+	dice.clear();
+	dice.push_back(dist(gen));
+	dice.push_back(dist(gen));
+	if (dice[0] == dice[1]) {
+		dice.push_back(dice[0]);
+		dice.push_back(dice[0]);
+	}
+}
+
+bool player::areDiceEmpty() const {
+	for (int d : dice) {
+		if (d > 0)
+			return false;
+	}
+	return true;
+}
+void player::consumeDie(Move selected) {
+	int dist;
+	if (selected.from == -1) {
+		dist = (color == 0) ? (selected.to + 1) : (24 - selected.to);
+	}
+	else {
+		dist = std::abs(selected.to - selected.from);
+	}
+
+	for (int& d : dice) {
+		if (d == dist) {
+			d = 0;
+			break;
+		}
+	}
 }
