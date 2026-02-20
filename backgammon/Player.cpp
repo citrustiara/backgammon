@@ -44,7 +44,7 @@ player::getallpossiblemoves(board& b) {
 	const std::vector<int>& availableDice = dice; //reference nie zajmuje dodatkowej pamieci, niech tak zostanie po starej wersji juz
 	// czy kostki sa takie same
 	bool all_same = true;
-	if (availableDice.size() >= 2 && availableDice[0] == availableDice[1] && availableDice[1]!=0) {
+	if (availableDice.size() >= 2 && availableDice[0] == availableDice[1] && availableDice[1] != 0) {
 		all_moves = getpossiblemoves(availableDice[0], b);
 	}
 
@@ -90,5 +90,25 @@ void player::consumeDie(Move selected) {
 			d = 0;
 			break;
 		}
+	}
+}
+bool player::isEnemy(int pos, board& b) const {
+	if (pos < 0 || pos > 23) return false;
+	const std::array<int, 24>& points = b.getPoints();
+	if (color == 0) {
+		return points[pos] < 0; //mozna tak sprawdzac bo inna metoda juz sprawdzila legalnosc
+	}
+	else {
+		return points[pos] > 0;
+	}
+}
+bool player::isSingleOwn(int pos, board& b) const {
+	if (pos < 0 || pos > 23) return false;
+	const std::array<int, 24>& points = b.getPoints();
+	if (color == 0) {
+		return points[pos] == 1;
+	}
+	else {
+		return points[pos] == -1;
 	}
 }

@@ -7,7 +7,7 @@ void real_player::makemove(board& b) {
 	rolldice();
 	b.draw();
 	while (true) {
-		if(areDiceEmpty()) break;
+		if (areDiceEmpty()) break;
 
 		std::vector<Move> all_moves = getallpossiblemoves(b);
 
@@ -22,7 +22,7 @@ void real_player::makemove(board& b) {
 
 		std::cout << "\nTwoje kostki: ";
 		for (int& d : dice) {
-			if(d>0) std::cout << d << " ";
+			if (d > 0) std::cout << d << " ";
 		}
 		std::cout << "\nTwoje mozliwe ruchy:\n";
 		for (size_t i = 0; i < all_moves.size(); ++i) {
@@ -32,10 +32,11 @@ void real_player::makemove(board& b) {
 			else
 				std::cout << all_moves[i].from + 1;
 			std::cout << " -> ";
-			if(all_moves[i].to<=23 && all_moves[i].to >= 0) std::cout << all_moves[i].to + 1 << "\n";
+			if (all_moves[i].to <= 23 && all_moves[i].to >= 0) std::cout << all_moves[i].to + 1 << "\n";
 			else {
 				int dist = abs(all_moves[i].to - all_moves[i].from);
-				std::cout << "OFF" << " (dice: " << dist << " )\n";}
+				std::cout << "OFF" << " (dice: " << dist << " )\n";
+			}
 		}
 
 		int choice;

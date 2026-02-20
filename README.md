@@ -18,7 +18,7 @@ This version is completely rewritten with a proper object-oriented architecture.
 
 ## Features
 
-- Interactive gameplay: play as a human against a random AI
+- Interactive gameplay: play as a human against a simple AI
 - Proper backgammon rules: piece movement, capturing opponent pieces, re-entering from bar, doubles
 - Game save/load (planned)
 - Undo system (planned)
