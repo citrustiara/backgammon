@@ -54,14 +54,14 @@ void real_player::makemove(board& b) {
 
 		int choice;
 		while (true) {
-			std::cout << "Wybierz numer ruchu (lub 0 aby zakonczyc): ";
+			std::cout << "Wybierz numer ruchu: ";
 			if (!(std::cin >> choice)) {
 				std::cin.clear();
 				std::cin.ignore(1000, '\n');
 				std::cout << "Blad. Wpisz liczbe.\n";
 				continue;
 			}
-			if (choice < 0 || choice >(int)all_moves.size()) {
+			if (choice < 1 || choice >(int)all_moves.size()) {
 				std::cout << "Blad. Wybierz z listy powyzej.\n";
 				continue;
 			}

@@ -9,6 +9,7 @@ board::board() {
 	points.fill(0);
 	points[0] = 2;   // Player 1
 	points[5] = -5;  // Player 2
+	points[7] = -3;  // Player 2
 	points[11] = 5;  // Player 1
 	points[12] = -5; // Player 2
 	points[16] = 3;  // Player 1
